@@ -26,7 +26,7 @@ COPY . .
 RUN pnpm run build:vinext
 
 # ─────────────────────────────────────────────────────────────
-# Stage 3 – runner: imagem de produção enxuta com nginx + Node
+# Stage 3 – runner: imagem de produção com nginx + Node.js
 # ─────────────────────────────────────────────────────────────
 FROM node:22-alpine AS runner
 
@@ -36,7 +36,7 @@ RUN apk add --no-cache nginx wget
 WORKDIR /app
 
 ENV NODE_ENV=production
-# Porta interna do Node.js (nginx faz proxy dessa porta)
+# Porta interna do Node.js (nginx faz proxy para essa porta)
 ENV PORT=3000
 
 # Usuário não-root para segurança
@@ -55,9 +55,26 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-# nginx precisa criar logs; ajusta permissões
-RUN mkdir -p /var/log/nginx /var/cache/nginx /tmp \
- && chown -R nextjs:nodejs /var/log/nginx /var/cache/nginx /tmp \
+# Cria e garante permissão dos diretórios que o nginx precisa acessar,
+# incluindo /var/lib/nginx (usado internamente pelo nginx no Alpine)
+RUN mkdir -p \
+      /var/lib/nginx \
+      /var/lib/nginx/tmp \
+      /var/lib/nginx/logs \
+      /var/log/nginx \
+      /var/cache/nginx \
+      /run/nginx \
+      /tmp/client_body \
+      /tmp/proxy_temp \
+      /tmp/fastcgi_temp \
+ && chown -R nextjs:nodejs \
+      /var/lib/nginx \
+      /var/log/nginx \
+      /var/cache/nginx \
+      /run/nginx \
+      /tmp/client_body \
+      /tmp/proxy_temp \
+      /tmp/fastcgi_temp \
  && chown nextjs:nodejs /etc/nginx/nginx.conf
 
 USER nextjs
