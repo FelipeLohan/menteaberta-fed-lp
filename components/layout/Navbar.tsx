@@ -48,12 +48,12 @@ export default function Navbar() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-2">
-            <Link href={`${process.env.NEXT_PUBLIC_FED_CORE_URL ?? "http://localhost:3001"}/login`}>
+            <Link href={`${process.env.NEXT_PUBLIC_FED_CORE_URL ?? "https://app.menteaberta.site"}/login`}>
               <Button variant="ghost" size="sm">
                 Entrar
               </Button>
             </Link>
-            <Link href={`${process.env.NEXT_PUBLIC_FED_CORE_URL ?? "http://localhost:3001"}/cadastro`}>
+            <Link href={`${process.env.NEXT_PUBLIC_FED_CORE_URL ?? "https://app.menteaberta.site"}/cadastro`}>
               <Button variant="primary" size="sm" rounded>
                 Criar Conta
               </Button>
@@ -92,12 +92,12 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="flex flex-col gap-2 pt-2 border-t border-teal-100">
-              <Link href={`${process.env.NEXT_PUBLIC_FED_CORE_URL ?? "http://localhost:3001"}/login`} className="w-full">
+              <Link href={`${process.env.NEXT_PUBLIC_FED_CORE_URL ?? "https://app.menteaberta.site"}/login`} className="w-full">
                 <Button variant="ghost" size="sm" className="w-full justify-center">
                   Entrar
                 </Button>
               </Link>
-              <Link href={`${process.env.NEXT_PUBLIC_FED_CORE_URL ?? "http://localhost:3001"}/cadastro`} className="w-full">
+              <Link href={`${process.env.NEXT_PUBLIC_FED_CORE_URL ?? "https://app.menteaberta.site"}/cadastro`} className="w-full">
                 <Button variant="primary" size="sm" rounded className="w-full justify-center">
                   Criar Conta
                 </Button>
