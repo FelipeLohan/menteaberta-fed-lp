@@ -48,12 +48,16 @@ export default function Navbar() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-2">
-            <Button variant="ghost" size="sm">
-              Entrar
-            </Button>
-            <Button variant="primary" size="sm" rounded>
-              Criar Conta
-            </Button>
+            <Link href={`${process.env.NEXT_PUBLIC_FED_CORE_URL ?? "http://localhost:3001"}/login`}>
+              <Button variant="ghost" size="sm">
+                Entrar
+              </Button>
+            </Link>
+            <Link href={`${process.env.NEXT_PUBLIC_FED_CORE_URL ?? "http://localhost:3001"}/cadastro`}>
+              <Button variant="primary" size="sm" rounded>
+                Criar Conta
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu toggle */}
@@ -88,12 +92,16 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="flex flex-col gap-2 pt-2 border-t border-teal-100">
-              <Button variant="ghost" size="sm" className="w-full justify-center">
-                Entrar
-              </Button>
-              <Button variant="primary" size="sm" rounded className="w-full justify-center">
-                Criar Conta
-              </Button>
+              <Link href={`${process.env.NEXT_PUBLIC_FED_CORE_URL ?? "http://localhost:3001"}/login`} className="w-full">
+                <Button variant="ghost" size="sm" className="w-full justify-center">
+                  Entrar
+                </Button>
+              </Link>
+              <Link href={`${process.env.NEXT_PUBLIC_FED_CORE_URL ?? "http://localhost:3001"}/cadastro`} className="w-full">
+                <Button variant="primary" size="sm" rounded className="w-full justify-center">
+                  Criar Conta
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
