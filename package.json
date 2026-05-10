@@ -33,7 +33,5 @@
     "vite": "^8.0.8"
   },
   "type": "module",
-  "pnpm": {
-    "onlyBuiltDependencies": ["sharp", "unrs-resolver"]
-  }
+  "packageManager": "pnpm@10.33.0"
 }
