@@ -9,6 +9,8 @@ RUN corepack enable
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+ARG NEXT_PUBLIC_FED_CORE_URL=https://app.menteaberta.site
+ENV NEXT_PUBLIC_FED_CORE_URL=$NEXT_PUBLIC_FED_CORE_URL
 RUN pnpm run build
 
 FROM node:22-alpine AS runner
